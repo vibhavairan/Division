@@ -3,7 +3,8 @@ package com.sih.division;
 import java.io.Serializable;
 
 public class BlogModel implements Serializable {
-    private String bid, cont, title, abs;
+    private String bid, cont, title, abs, uname, udist;
+    private byte[] photo;
 
     public String getBid() {
         return bid;
@@ -35,5 +36,29 @@ public class BlogModel implements Serializable {
 
     public void setAbs(String abs) {
         this.abs = abs;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getUdist() {
+        return udist;
+    }
+
+    public void setUdist(String udist) {
+        this.udist = udist;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }

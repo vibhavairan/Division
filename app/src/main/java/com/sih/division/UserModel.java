@@ -3,7 +3,8 @@ package com.sih.division;
 import java.io.Serializable;
 
 public class UserModel implements Serializable {
-    private String uid, upass, uname, gender, dob;
+    private String uid, upass, uname, gender, dob, permadd, dist;
+    private byte[] photo;
 
     public String getUid() {
         return uid;
@@ -43,5 +44,29 @@ public class UserModel implements Serializable {
 
     public void setDob(String dob) {
         this.dob = dob;
+    }
+
+    public String getPermadd() {
+        return permadd;
+    }
+
+    public void setPermadd(String permadd) {
+        this.permadd = permadd;
+    }
+
+    public String getDist() {
+        return dist;
+    }
+
+    public void setDist(String dist) {
+        this.dist = dist;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }

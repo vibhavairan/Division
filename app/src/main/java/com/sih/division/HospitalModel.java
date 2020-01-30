@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class HospitalModel implements Serializable {
     private String hid, hname, hpass, dist, vaccount;
+    private byte[] photo;
 
     public String getHid() {
         return hid;
@@ -43,5 +44,13 @@ public class HospitalModel implements Serializable {
 
     public void setVaccount(String vaccount) {
         this.vaccount = vaccount;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }
