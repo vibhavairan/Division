@@ -109,6 +109,25 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.close();
     }
 
+    public void updateRecordUser(UserModel newUser) {
+        database = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put(COLUMN_UID, newUser.getUid());
+        dataToInsert.put(COLUMN_UPASS, newUser.getUpass());
+        dataToInsert.put(COLUMN_USER_NAME, newUser.getUname());
+        dataToInsert.put(COLUMN_GENDER, newUser.getGender());
+        dataToInsert.put(COLUMN_DOB, newUser.getDob());
+        dataToInsert.put(COLUMN_PERMANENTADD, newUser.getPermadd());
+        dataToInsert.put(COLUMN_USER_DISTRICT_NAME, newUser.getDist());
+        dataToInsert.put(COLUMN_PHOTO, newUser.getPhoto());
+        String where = COLUMN_UID + "=" + newUser.getUid();
+        try{
+            database.update(USER_TABLE_NAME, dataToInsert, where, null);
+        }
+        catch (Exception e){}
+        database.close();
+    }
+
     public void deleteRecordUser(UserModel newUser) {
         database = this.getReadableDatabase();
         database.execSQL("delete from " + USER_TABLE_NAME + " where " + COLUMN_UID + " = '" + newUser.getUid() + "'");
