@@ -87,4 +87,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         catch (Exception e){}
         database.close();
     }
+
+    public void deleteRecordHospital(HospitalModel newHospital) {
+        database = this.getReadableDatabase();
+        database.execSQL("delete from " + HOSPITAL_TABLE_NAME + " where " + COLUMN_HID + " = '" + newHospital.getHid() + "'");
+        database.close();
+    }
 }
