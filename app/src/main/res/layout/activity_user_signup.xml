@@ -94,7 +94,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/address_student"
+                android:id="@+id/user_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -103,7 +103,7 @@
                 android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/user_signup"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
