@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class UserModel implements Serializable {
     private String uid, upass, uname, gender, dob, permadd, dist;
+    private byte[] photo;
 
     public String getUid() {
         return uid;
@@ -59,5 +60,13 @@ public class UserModel implements Serializable {
 
     public void setDist(String dist) {
         this.dist = dist;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }
