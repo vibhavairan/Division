@@ -71,5 +71,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.close();
     }
 
-
+    public void updateRecordHospital(HospitalModel newHospital) {
+        database = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put(COLUMN_HID, newHospital.getHid());
+        dataToInsert.put(COLUMN_HOSPITAL_NAME, newHospital.getHname());
+        dataToInsert.put(COLUMN_HOSPITAL_PASS, newHospital.getHpass());
+        dataToInsert.put(COLUMN_DISTRICT_NAME, newHospital.getDist());
+        dataToInsert.put(COLUMN_VACANCIES, newHospital.getVaccount());
+        dataToInsert.put(COLUMN_HOSPITAL_PHOTO, newHospital.getPhoto());
+        String where = COLUMN_HID + "=" + newHospital.getHid();
+        try{
+            database.update(HOSPITAL_TABLE_NAME, dataToInsert, where, null);
+        }
+        catch (Exception e){}
+        database.close();
+    }
 }
