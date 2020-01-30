@@ -91,5 +91,13 @@
         android:layout_gravity="center"
         android:layout_marginTop="160dp"
         android:onClick="addListenerOnButton"
-        android:text="proceed" />
+        android:text="Sign in" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="addListenerOnButtonSignup"
+        android:text="sign up" />
 </LinearLayout>
