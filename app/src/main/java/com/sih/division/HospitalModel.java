@@ -3,7 +3,7 @@ package com.sih.division;
 import java.io.Serializable;
 
 public class HospitalModel implements Serializable {
-    private String hid, hname, hpass, dist;
+    private String hid, hname, hpass, dist, vaccount;
 
     public String getHid() {
         return hid;
@@ -35,5 +35,13 @@ public class HospitalModel implements Serializable {
 
     public void setDist(String dist) {
         this.dist = dist;
+    }
+
+    public String getVaccount() {
+        return vaccount;
+    }
+
+    public void setVaccount(String vaccount) {
+        this.vaccount = vaccount;
     }
 }
