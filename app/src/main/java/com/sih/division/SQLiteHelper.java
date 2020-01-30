@@ -171,4 +171,38 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.execSQL("delete from " + BLOG_TABLE_NAME + " where " + COLUMN_BID + " = '" + newBlog.getBid() + "'");
         database.close();
     }
+
+    public void insertRecordDisease(DiseaseModel newDisease) {
+        database = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_DISEASE_ID, newDisease.getDid());
+        cv.put(COLUMN_HID, newDisease.getHid());
+        cv.put(COLUMN_DISEASE_NAME, newDisease.getDname());
+        cv.put(COLUMN_PATIENTS, newDisease.getPatcount());
+        cv.put(COLUMN_DATE, newDisease.getDate());
+        database.insert( DISEASE_TABLE_NAME, null, cv );
+        database.close();
+    }
+
+    public void updateRecordDisease(DiseaseModel newDisease) {
+        database = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put(COLUMN_DISEASE_ID, newDisease.getDid());
+        dataToInsert.put(COLUMN_HID, newDisease.getHid());
+        dataToInsert.put(COLUMN_DISEASE_NAME, newDisease.getDname());
+        dataToInsert.put(COLUMN_PATIENTS, newDisease.getPatcount());
+        dataToInsert.put(COLUMN_DATE, newDisease.getDate());
+        String where = COLUMN_DISEASE_ID + "=" + newDisease.getDid();
+        try{
+            database.update(DISEASE_TABLE_NAME, dataToInsert, where, null);
+        }
+        catch (Exception e){}
+        database.close();
+    }
+
+    public void deleteRecordDisease(DiseaseModel newDisease) {
+        database = this.getReadableDatabase();
+        database.execSQL("delete from " + DISEASE_TABLE_NAME + " where " + COLUMN_DISEASE_ID + " = '" + newDisease.getDid() + "'");
+        database.close();
+    }
 }
