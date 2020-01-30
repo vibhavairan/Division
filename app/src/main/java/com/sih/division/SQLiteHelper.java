@@ -200,9 +200,5 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.close();
     }
 
-    public void deleteRecordDisease(DiseaseModel newDisease) {
-        database = this.getReadableDatabase();
-        database.execSQL("delete from " + DISEASE_TABLE_NAME + " where " + COLUMN_DISEASE_ID + " = '" + newDisease.getDid() + "'");
-        database.close();
-    }
+
 }
