@@ -27,6 +27,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DISEASE_ID = "DID";
     public static final String COLUMN_DISEASE_NAME = "NAME";
     public static final String COLUMN_PATIENTS = "PAT_COUNT";
+    public static final String COLUMN_DATE = "DATE";
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,7 +37,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + HOSPITAL_TABLE_NAME + " ( " + COLUMN_HID + " VARCHAR(20)," + COLUMN_HOSPITAL_NAME + " VARCHAR(30), " + COLUMN_HOSPITAL_PASS + " VARCHAR(30), " + COLUMN_DISTRICT_NAME + " VARCHAR(30));");
         db.execSQL("create table " + BLOG_TABLE_NAME + " ( " + COLUMN_BID + " VARCHAR(20),"+ COLUMN_TITLE + " VARCHAR(50),"+ COLUMN_ABSTRACT + " VARCHAR(100)," + COLUMN_BLOG_CONTENT + " VARCHAR(30));");
         db.execSQL("create table " + USER_TABLE_NAME + " ( " + COLUMN_UID + " VARCHAR(20),"+ COLUMN_USER_NAME + " VARCHAR(50),"+ COLUMN_GENDER + " VARCHAR(100)," + COLUMN_DOB + " DATE);");
-        db.execSQL("create table " + DISEASE_TABLE_NAME + " ( " + COLUMN_DISEASE_ID + " VARCHAR(20),"+ COLUMN_HID + " VARCHAR(20),"+ COLUMN_DISEASE_NAME + " VARCHAR(50)," + COLUMN_PATIENTS + " INTEGER);");
+        db.execSQL("create table " + DISEASE_TABLE_NAME + " ( " + COLUMN_DISEASE_ID + " VARCHAR(20),"+ COLUMN_HID + " VARCHAR(20),"+ COLUMN_DISEASE_NAME + " VARCHAR(50)," + COLUMN_PATIENTS + " INTEGER, " + COLUMN_DATE + " DATE);");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
