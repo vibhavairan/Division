@@ -3,7 +3,32 @@ package com.sih.division;
 import java.io.Serializable;
 
 public class UserModel implements Serializable {
-    private String uid, upass, uname, gender, dob, permadd, dist;
+    private String uid;
+    private String upass;
+    private String uname;
+    private String cnumber;
+
+    public String getCnumber() {
+        return cnumber;
+    }
+
+    public void setCnumber(String cnumber) {
+        this.cnumber = cnumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String gender;
+    private String dob;
+    private String permadd;
+    private String dist;
+    private String email;
     private byte[] photo;
 
     public String getUid() {
