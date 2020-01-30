@@ -133,4 +133,42 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.execSQL("delete from " + USER_TABLE_NAME + " where " + COLUMN_UID + " = '" + newUser.getUid() + "'");
         database.close();
     }
+
+    public void insertRecordBlog(BlogModel newBlog) {
+        database = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_BID, newBlog.getBid());
+        cv.put(COLUMN_BLOG_CONTENT, newBlog.getCont());
+        cv.put(COLUMN_TITLE, newBlog.getTitle());
+        cv.put(COLUMN_ABSTRACT, newBlog.getAbs());
+        cv.put(COLUMN_B_USERNAME, newBlog.getUname());
+        cv.put(COLUMN_B_PHOTO, newBlog.getPhoto());
+        cv.put(COLUMN_B_DISTRICT, newBlog.getUdist());
+        database.insert( BLOG_TABLE_NAME, null, cv );
+        database.close();
+    }
+
+    public void updateRecordBlog(BlogModel newBlog) {
+        database = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put(COLUMN_BID, newBlog.getBid());
+        dataToInsert.put(COLUMN_BLOG_CONTENT, newBlog.getCont());
+        dataToInsert.put(COLUMN_TITLE, newBlog.getTitle());
+        dataToInsert.put(COLUMN_ABSTRACT, newBlog.getAbs());
+        dataToInsert.put(COLUMN_B_USERNAME, newBlog.getUname());
+        dataToInsert.put(COLUMN_B_PHOTO, newBlog.getPhoto());
+        dataToInsert.put(COLUMN_B_DISTRICT, newBlog.getUdist());
+        String where = COLUMN_BID + "=" + newBlog.getBid();
+        try{
+            database.update(BLOG_TABLE_NAME, dataToInsert, where, null);
+        }
+        catch (Exception e){}
+        database.close();
+    }
+
+    public void deleteRecordBlog(BlogModel newBlog) {
+        database = this.getReadableDatabase();
+        database.execSQL("delete from " + BLOG_TABLE_NAME + " where " + COLUMN_BID + " = '" + newBlog.getBid() + "'");
+        database.close();
+    }
 }
