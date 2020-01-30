@@ -28,6 +28,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_UID = "USERID";
     public static final String COLUMN_UPASS = "USERPASSWORD";
     public static final String COLUMN_USER_NAME = "USERNAME";
+    public static final String COLUMN_CONTACT_NUMBER = "CNUMBER";
+    public static final String COLUMN_USER_EMAIL = "EMAIL";
     public static final String COLUMN_GENDER = "GENDER";
     public static final String COLUMN_DOB = "DOB";
     public static final String COLUMN_PERMANENTADD = "PERMANENTADD";
@@ -46,7 +48,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + HOSPITAL_TABLE_NAME + " ( " + COLUMN_HID + " VARCHAR(20)," + COLUMN_HOSPITAL_NAME + " VARCHAR(30), " + COLUMN_HOSPITAL_PASS + " VARCHAR(30), " + COLUMN_DISTRICT_NAME + " VARCHAR(30), " + COLUMN_VACANCIES + " INTEGER, " + COLUMN_HOSPITAL_PHOTO + " BLOB);");
         db.execSQL("create table " + BLOG_TABLE_NAME + " ( " + COLUMN_BID + " VARCHAR(20),"+ COLUMN_TITLE + " VARCHAR(50),"+ COLUMN_ABSTRACT + " VARCHAR(100)," + COLUMN_BLOG_CONTENT + " VARCHAR(30), " + COLUMN_B_USERNAME + " VARCHAR(50), " + COLUMN_B_PHOTO + " BLOB, " + COLUMN_B_DISTRICT + " VARCHAR(10));");
-        db.execSQL("create table " + USER_TABLE_NAME + " ( " + COLUMN_UID + " VARCHAR(20), "+ COLUMN_UPASS + " VARCHAR(30), "+ COLUMN_USER_NAME + " VARCHAR(50)," + COLUMN_DOB + " DATE, " + COLUMN_GENDER + " VARCHAR(100)," + COLUMN_PERMANENTADD + " VARCHAR(100), " + COLUMN_USER_DISTRICT_NAME + " VARCHAR(10), " + COLUMN_PHOTO + " BLOB) ;");
+        db.execSQL("create table " + USER_TABLE_NAME + " ( " + COLUMN_UID + " VARCHAR(20), "+ COLUMN_UPASS + " VARCHAR(30), "+ COLUMN_USER_NAME + " VARCHAR(50)," + COLUMN_CONTACT_NUMBER + " INTEGER, " + COLUMN_USER_EMAIL + " VARCHAR(50), "+ COLUMN_DOB + " DATE, " + COLUMN_GENDER + " VARCHAR(100)," + COLUMN_PERMANENTADD + " VARCHAR(100), " + COLUMN_USER_DISTRICT_NAME + " VARCHAR(10), " + COLUMN_PHOTO + " BLOB) ;");
         db.execSQL("create table " + DISEASE_TABLE_NAME + " ( " + COLUMN_DISEASE_ID + " VARCHAR(20),"+ COLUMN_HID + " VARCHAR(20),"+ COLUMN_DISEASE_NAME + " VARCHAR(50)," + COLUMN_PATIENTS + " INTEGER, " + COLUMN_DATE + " DATE);");
     }
     @Override
@@ -100,6 +102,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_UID, newUser.getUid());
         cv.put(COLUMN_UPASS, newUser.getUpass());
         cv.put(COLUMN_USER_NAME, newUser.getUname());
+        cv.put(COLUMN_CONTACT_NUMBER, newUser.getCnumber());
+        cv.put(COLUMN_USER_EMAIL, newUser.getEmail());
         cv.put(COLUMN_GENDER, newUser.getGender());
         cv.put(COLUMN_DOB, newUser.getDob());
         cv.put(COLUMN_PERMANENTADD, newUser.getPermadd());
@@ -115,6 +119,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         dataToInsert.put(COLUMN_UID, newUser.getUid());
         dataToInsert.put(COLUMN_UPASS, newUser.getUpass());
         dataToInsert.put(COLUMN_USER_NAME, newUser.getUname());
+        dataToInsert.put(COLUMN_CONTACT_NUMBER, newUser.getCnumber());
+        dataToInsert.put(COLUMN_USER_EMAIL, newUser.getEmail());
         dataToInsert.put(COLUMN_GENDER, newUser.getGender());
         dataToInsert.put(COLUMN_DOB, newUser.getDob());
         dataToInsert.put(COLUMN_PERMANENTADD, newUser.getPermadd());
