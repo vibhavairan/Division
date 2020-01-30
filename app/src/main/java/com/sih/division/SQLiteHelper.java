@@ -93,4 +93,25 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.execSQL("delete from " + HOSPITAL_TABLE_NAME + " where " + COLUMN_HID + " = '" + newHospital.getHid() + "'");
         database.close();
     }
+
+    public void insertRecordUser(UserModel newUser) {
+        database = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_UID, newUser.getUid());
+        cv.put(COLUMN_UPASS, newUser.getUpass());
+        cv.put(COLUMN_USER_NAME, newUser.getUname());
+        cv.put(COLUMN_GENDER, newUser.getGender());
+        cv.put(COLUMN_DOB, newUser.getDob());
+        cv.put(COLUMN_PERMANENTADD, newUser.getPermadd());
+        cv.put(COLUMN_USER_DISTRICT_NAME, newUser.getDist());
+        cv.put(COLUMN_PHOTO, newUser.getPhoto());
+        database.insert( USER_TABLE_NAME, null, cv );
+        database.close();
+    }
+
+    public void deleteRecordUser(UserModel newUser) {
+        database = this.getReadableDatabase();
+        database.execSQL("delete from " + USER_TABLE_NAME + " where " + COLUMN_UID + " = '" + newUser.getUid() + "'");
+        database.close();
+    }
 }
