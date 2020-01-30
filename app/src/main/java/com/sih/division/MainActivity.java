@@ -1,7 +1,9 @@
 package com.sih.division;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         if(LoginValidation.equals("User") && id_s.equals(UserId+"")&& pass_s.equals(UserPass))
         {
             Toast.makeText(MainActivity.this, LoginValidation, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, UserActivity.class);
             startActivity(intent);
         }
         else
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                // boolean z = sqLiteHelper.passcheckStudent(id_s,pass_s);
                 //if(z)
                 //{
-                    Toast.makeText(MainActivity.this,"User", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Hospital", Toast.LENGTH_SHORT).show();
                     /*StudentModel s = new StudentModel();
                     s.setsID(id_s);*/
                     HospitalModel h = new HospitalModel();
@@ -105,5 +107,38 @@ public class MainActivity extends AppCompatActivity {
         }
         else
             Toast.makeText(MainActivity.this,"Invalid Input", Toast.LENGTH_SHORT).show();
+    }
+    public void addListenerOnButtonSignup(View V)
+    {
+        AlertDialog.Builder builder
+                = new AlertDialog
+                .Builder(MainActivity.this);
+        builder.setMessage("");
+        builder.setTitle("Sign up as");
+        builder.setCancelable(true);
+        builder.setPositiveButton(
+                "User",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        Intent intent = new Intent(MainActivity.this,UserSignup.class);
+                        startActivity(intent);
+                        dialog.cancel();
+                    }
+                });
+        builder.setNegativeButton(
+                "Hospital",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        Intent intent = new Intent(MainActivity.this,HospitalSignup.class);
+                        startActivity(intent);
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
