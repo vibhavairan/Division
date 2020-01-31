@@ -2,9 +2,12 @@ package com.sih.division;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
     private SQLiteDatabase database;
@@ -49,10 +52,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + HOSPITAL_TABLE_NAME + " ( " + COLUMN_HID + " VARCHAR(20)," + COLUMN_HOSPITAL_NAME + " VARCHAR(30), " + COLUMN_HOSPITAL_PASS + " VARCHAR(30), " + COLUMN_DISTRICT_NAME + " VARCHAR(30), " + COLUMN_VACANCIES + " INTEGER, " + COLUMN_HOSPITAL_PHOTO + " BLOB, " + COLUMN_HOSPITAL_NUMBER + " INTEGER, " + COLUMN_HOSPITAL_ADDRESS + " VARCHAR(100));");
-        db.execSQL("create table " + BLOG_TABLE_NAME + " ( " + COLUMN_BID + " VARCHAR(20),"+ COLUMN_TITLE + " VARCHAR(50),"+ COLUMN_ABSTRACT + " VARCHAR(100)," + COLUMN_BLOG_CONTENT + " VARCHAR(30), " + COLUMN_B_USERNAME + " VARCHAR(50), " + COLUMN_B_PHOTO + " BLOB, " + COLUMN_B_DISTRICT + " VARCHAR(10));");
-        db.execSQL("create table " + USER_TABLE_NAME + " ( " + COLUMN_UID + " VARCHAR(20), "+ COLUMN_UPASS + " VARCHAR(30), "+ COLUMN_USER_NAME + " VARCHAR(50)," + COLUMN_CONTACT_NUMBER + " INTEGER, " + COLUMN_USER_EMAIL + " VARCHAR(50), "+ COLUMN_DOB + " DATE, " + COLUMN_GENDER + " VARCHAR(100)," + COLUMN_PERMANENTADD + " VARCHAR(100), " + COLUMN_USER_DISTRICT_NAME + " VARCHAR(10), " + COLUMN_PHOTO + " BLOB) ;");
-        db.execSQL("create table " + DISEASE_TABLE_NAME + " ( " + COLUMN_DISEASE_ID + " VARCHAR(20),"+ COLUMN_HID + " VARCHAR(20),"+ COLUMN_DISEASE_NAME + " VARCHAR(50)," + COLUMN_PATIENTS + " INTEGER, " + COLUMN_DATE + " DATE);");
+        db.execSQL("create table " + HOSPITAL_TABLE_NAME + " ( " + COLUMN_HID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_HOSPITAL_NAME + " VARCHAR(30), " + COLUMN_HOSPITAL_PASS + " VARCHAR(30), " + COLUMN_DISTRICT_NAME + " VARCHAR(30), " + COLUMN_VACANCIES + " INTEGER, " + COLUMN_HOSPITAL_PHOTO + " BLOB, " + COLUMN_HOSPITAL_NUMBER + " INTEGER, " + COLUMN_HOSPITAL_ADDRESS + " VARCHAR(100));");
+        db.execSQL("create table " + BLOG_TABLE_NAME + " ( " + COLUMN_BID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ COLUMN_TITLE + " VARCHAR(50),"+ COLUMN_ABSTRACT + " VARCHAR(100)," + COLUMN_BLOG_CONTENT + " VARCHAR(30), " + COLUMN_B_USERNAME + " VARCHAR(50), " + COLUMN_B_PHOTO + " BLOB, " + COLUMN_B_DISTRICT + " VARCHAR(10));");
+        db.execSQL("create table " + USER_TABLE_NAME + " ( " + COLUMN_UID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+ COLUMN_UPASS + " VARCHAR(30), "+ COLUMN_USER_NAME + " VARCHAR(50)," + COLUMN_CONTACT_NUMBER + " INTEGER, " + COLUMN_USER_EMAIL + " VARCHAR(50), "+ COLUMN_DOB + " DATE, " + COLUMN_GENDER + " VARCHAR(100)," + COLUMN_PERMANENTADD + " VARCHAR(100), " + COLUMN_USER_DISTRICT_NAME + " VARCHAR(10), " + COLUMN_PHOTO + " BLOB) ;");
+        db.execSQL("create table " + DISEASE_TABLE_NAME + " ( " + COLUMN_DISEASE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ COLUMN_HID + " INTEGER,"+ COLUMN_DISEASE_NAME + " VARCHAR(50)," + COLUMN_PATIENTS + " INTEGER, " + COLUMN_DATE + " DATE);");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -218,5 +221,26 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database = this.getReadableDatabase();
         database.execSQL("delete from " + DISEASE_TABLE_NAME + " where " + COLUMN_DISEASE_ID + " = '" + newDisease.getDid() + "'");
         database.close();
+    }
+    public ArrayList<DiseaseModel> getAllRecordsDisease(HospitalModel temp) {
+        database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM " + DISEASE_TABLE_NAME + " WHERE " + COLUMN_HID + " LIKE '" + temp.getHid() + "'", null);
+        ArrayList<DiseaseModel> diseases = new ArrayList<>();
+        DiseaseModel tempnew;
+        if (cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                cursor.moveToNext();
+                tempnew = new DiseaseModel();
+                tempnew.setDid(cursor.getString(0));
+                tempnew.setHid(cursor.getString(1));
+                tempnew.setDname(cursor.getString(2));
+                tempnew.setPatcount(cursor.getString(3));
+                tempnew.setDate(cursor.getString(4));
+                diseases.add(tempnew);
+            }
+        }
+        cursor.close();
+        database.close();
+        return diseases;
     }
 }

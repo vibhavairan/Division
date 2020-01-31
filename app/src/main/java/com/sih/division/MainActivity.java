@@ -17,13 +17,15 @@ public class MainActivity extends AppCompatActivity {
     String UserPass = "1234",HospitalPass = "1234",GuestPass = "1234";
     int UserId = 101 ,HospitalId = 102,GuestId = 103;
     EditText pass , id;
-    String pass_s , id_s;
+    String pass_s="" , id_s="";
     SQLiteHelper sqLiteHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         radioLoginGroup = (RadioGroup) findViewById(R.id.radio);
+        id = (EditText) findViewById(R.id.id);
+        pass = (EditText) findViewById(R.id.pass);
         radioLoginGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -45,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void addListenerOnButton(View V)
     {
-
-        id = (EditText) findViewById(R.id.id);
-        pass = (EditText) findViewById(R.id.pass);
         id_s = id.getText().toString();
         pass_s = pass.getText().toString();
         if(LoginValidation.equals("User") && id_s.equals(UserId+"")&& pass_s.equals(UserPass))
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     s.setsID(id_s);*/
                     HospitalModel h = new HospitalModel();
                     h.setHid(id_s);
-                    Intent intent = new Intent(MainActivity.this,UserActivity.class);
+                    Intent intent = new Intent(MainActivity.this,HospitalActivity.class);
                     intent.putExtra("Map", h);
                     startActivity(intent);
                // }

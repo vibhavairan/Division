@@ -115,7 +115,6 @@ public class UserSignup extends AppCompatActivity {
     }
 
     public void button(View V) {
-        String cid="temp";
         String pass = Pass.getText().toString();
         String uname = uName.getText().toString();
         String dob = DOB.getText().toString();
@@ -133,7 +132,6 @@ public class UserSignup extends AppCompatActivity {
                 newStudent.setsID(studenttemp.getsID());*/
             newUser.setUpass(pass);
             newUser.setUname(uname);
-            newUser.setUid(cid);
             newUser.setPermadd(address);
             newUser.setDob(dob);
             newUser.setGender(gender);

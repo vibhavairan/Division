@@ -91,7 +91,6 @@ public class HospitalSignup extends AppCompatActivity {
         }
 
     }
-
     public void h_button(View V) {
         String hid="temp";
         String hpass = Pass.getText().toString();
@@ -111,7 +110,6 @@ public class HospitalSignup extends AppCompatActivity {
             newHospital.setHpass(hpass);
             newHospital.setHname(hname);
             newHospital.setNumber(hnumber);
-            newHospital.setHid(hid);
             newHospital.setVaccount(vacount);
             newHospital.setDist(city);
             newHospital.setAddress(address);
