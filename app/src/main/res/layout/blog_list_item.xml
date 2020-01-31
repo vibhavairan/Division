@@ -28,10 +28,17 @@
             android:textStyle="bold" />
     </RelativeLayout>
     <TextView
-        android:id="@+id/blog"
+        android:id="@+id/blogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textSize="20dp"
+        android:text="The Roman temple"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/blog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="The Roman temple of Bziza is a well-preserved first-century AD Roman temple in the Lebanese town of Bziza. It is dedicated to Azizos, a personification of the morning star in the Canaanite mythology. The temple's name is a corruption of Beth Azizo, meaning the house or temple of Azizos. The building has two doors that connect the portico to a square chamber. To the back of the temple lie the remains of the adyton where images of the deity once stood."
         android:padding="10dp"/>
 

@@ -14,8 +14,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     RadioGroup radioLoginGroup;
     String LoginValidation="User";
-    String UserPass = "1234",HospitalPass = "1234",GuestPass = "1234";
-    int UserId = 101 ,HospitalId = 102,GuestId = 103;
     EditText pass , id;
     String pass_s="" , id_s="";
     SQLiteHelper sqLiteHelper;
@@ -49,10 +47,13 @@ public class MainActivity extends AppCompatActivity {
     {
         id_s = id.getText().toString();
         pass_s = pass.getText().toString();
-        if(LoginValidation.equals("User") && id_s.equals(UserId+"")&& pass_s.equals(UserPass))
+        if(LoginValidation.equals("User"))
         {
             Toast.makeText(MainActivity.this, LoginValidation, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, UserActivity.class);
+            UserModel u = new UserModel();
+            u.setUid(id_s);
+            Intent intent = new Intent(MainActivity.this,UserActivity.class);
+            intent.putExtra("Map", u);
             startActivity(intent);
         }
         else

@@ -53,7 +53,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + HOSPITAL_TABLE_NAME + " ( " + COLUMN_HID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_HOSPITAL_NAME + " VARCHAR(30), " + COLUMN_HOSPITAL_PASS + " VARCHAR(30), " + COLUMN_DISTRICT_NAME + " VARCHAR(30), " + COLUMN_VACANCIES + " INTEGER, " + COLUMN_HOSPITAL_PHOTO + " BLOB, " + COLUMN_HOSPITAL_NUMBER + " INTEGER, " + COLUMN_HOSPITAL_ADDRESS + " VARCHAR(100));");
-        db.execSQL("create table " + BLOG_TABLE_NAME + " ( " + COLUMN_BID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ COLUMN_TITLE + " VARCHAR(50),"+ COLUMN_ABSTRACT + " VARCHAR(100)," + COLUMN_BLOG_CONTENT + " VARCHAR(30), " + COLUMN_B_USERNAME + " VARCHAR(50), " + COLUMN_B_PHOTO + " BLOB, " + COLUMN_B_DISTRICT + " VARCHAR(10));");
+        db.execSQL("create table " + BLOG_TABLE_NAME + " ( " + COLUMN_BID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ COLUMN_TITLE + " VARCHAR(50),"+ COLUMN_ABSTRACT + " VARCHAR(100)," + COLUMN_BLOG_CONTENT + " VARCHAR(30), " + COLUMN_UID + " INTEGER," + COLUMN_B_DISTRICT + " VARCHAR(10));");
         db.execSQL("create table " + USER_TABLE_NAME + " ( " + COLUMN_UID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+ COLUMN_UPASS + " VARCHAR(30), "+ COLUMN_USER_NAME + " VARCHAR(50)," + COLUMN_CONTACT_NUMBER + " INTEGER, " + COLUMN_USER_EMAIL + " VARCHAR(50), "+ COLUMN_DOB + " DATE, " + COLUMN_GENDER + " VARCHAR(100)," + COLUMN_PERMANENTADD + " VARCHAR(100), " + COLUMN_USER_DISTRICT_NAME + " VARCHAR(10), " + COLUMN_PHOTO + " BLOB) ;");
         db.execSQL("create table " + DISEASE_TABLE_NAME + " ( " + COLUMN_DISEASE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ COLUMN_HID + " INTEGER,"+ COLUMN_DISEASE_NAME + " VARCHAR(50)," + COLUMN_PATIENTS + " INTEGER, " + COLUMN_DATE + " DATE);");
     }
@@ -110,7 +110,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void insertRecordUser(UserModel newUser) {
         database = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_UID, newUser.getUid());
         cv.put(COLUMN_UPASS, newUser.getUpass());
         cv.put(COLUMN_USER_NAME, newUser.getUname());
         cv.put(COLUMN_CONTACT_NUMBER, newUser.getCnumber());
@@ -127,7 +126,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void updateRecordUser(UserModel newUser) {
         database = this.getWritableDatabase();
         ContentValues dataToInsert = new ContentValues();
-        dataToInsert.put(COLUMN_UID, newUser.getUid());
         dataToInsert.put(COLUMN_UPASS, newUser.getUpass());
         dataToInsert.put(COLUMN_USER_NAME, newUser.getUname());
         dataToInsert.put(COLUMN_CONTACT_NUMBER, newUser.getCnumber());
@@ -154,14 +152,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void insertRecordBlog(BlogModel newBlog) {
         database = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_BID, newBlog.getBid());
         cv.put(COLUMN_BLOG_CONTENT, newBlog.getCont());
         cv.put(COLUMN_TITLE, newBlog.getTitle());
         cv.put(COLUMN_ABSTRACT, newBlog.getAbs());
-        cv.put(COLUMN_B_USERNAME, newBlog.getUname());
-        cv.put(COLUMN_B_PHOTO, newBlog.getPhoto());
+        cv.put(COLUMN_UID, newBlog.getUid());
         cv.put(COLUMN_B_DISTRICT, newBlog.getUdist());
-        database.insert( BLOG_TABLE_NAME, null, cv );
+        database.insert(BLOG_TABLE_NAME, null, cv );
         database.close();
     }
 
@@ -172,8 +168,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         dataToInsert.put(COLUMN_BLOG_CONTENT, newBlog.getCont());
         dataToInsert.put(COLUMN_TITLE, newBlog.getTitle());
         dataToInsert.put(COLUMN_ABSTRACT, newBlog.getAbs());
-        dataToInsert.put(COLUMN_B_USERNAME, newBlog.getUname());
-        dataToInsert.put(COLUMN_B_PHOTO, newBlog.getPhoto());
+        dataToInsert.put(COLUMN_UID, newBlog.getUid());
         dataToInsert.put(COLUMN_B_DISTRICT, newBlog.getUdist());
         String where = COLUMN_BID + "=" + newBlog.getBid();
         try{
@@ -258,5 +253,48 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database = this.getReadableDatabase();
         database.execSQL("UPDATE " + DISEASE_TABLE_NAME + " SET "+ COLUMN_PATIENTS + " = " + t.getPatcount() + " WHERE "+ COLUMN_HID + " = "+ t.getHid() + " AND "+ COLUMN_DISEASE_ID + " = " +t.getDid());
         database.close();
+    }
+
+    public ArrayList<BlogModel> getAllRecordsBlogs() {
+        database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM " + BLOG_TABLE_NAME , null);
+        ArrayList<BlogModel> blogs = new ArrayList<>();
+        BlogModel tempnew;
+        if (cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                cursor.moveToNext();
+                tempnew = new BlogModel();
+                tempnew.setBid(cursor.getString(0));
+                tempnew.setTitle(cursor.getString(1));
+                tempnew.setAbs(cursor.getString(2));
+                tempnew.setCont(cursor.getString(3));
+                tempnew.setUid(cursor.getString(4));
+                tempnew.setUdist(cursor.getString(5));
+                blogs.add(tempnew);
+            }
+        }
+        cursor.close();
+        database.close();
+        return blogs;
+    }
+    public String getUserName(BlogModel m)
+    {
+        database = this.getReadableDatabase();
+        Cursor c = database.rawQuery("SELECT "+ COLUMN_USER_NAME + " FROM "+USER_TABLE_NAME+" WHERE "+ COLUMN_UID +" = "+ m.getUid(),null);
+        c.moveToNext();
+        String s = c.getString(0);
+        c.close();
+        database.close();
+        return s;
+    }
+    public byte[] getStudentPhoto(BlogModel m)
+    {
+        database = this.getReadableDatabase();
+        Cursor c = database.rawQuery("SELECT "+ COLUMN_PHOTO + " FROM "+USER_TABLE_NAME+" WHERE "+ COLUMN_UID +" = "+ m.getUid(),null);
+        c.moveToNext();
+        byte[] temp = c.getBlob(0);
+        c.close();
+        database.close();
+        return temp;
     }
 }
