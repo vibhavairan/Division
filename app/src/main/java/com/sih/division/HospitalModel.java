@@ -9,7 +9,25 @@ public class HospitalModel implements Serializable {
     private String dist;
     private String vaccount;
     private String number;
+    private String longitude;
 
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    private String latitude;
     public String getAddress() {
         return address;
     }

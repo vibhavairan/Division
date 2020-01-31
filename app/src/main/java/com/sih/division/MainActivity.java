@@ -48,13 +48,22 @@ public class MainActivity extends AppCompatActivity {
         id_s = id.getText().toString();
         pass_s = pass.getText().toString();
         if(LoginValidation.equals("User"))
+        { try {
+            boolean z = sqLiteHelper.passcheckUser(id_s, pass_s);
+            if (z) {
+                Toast.makeText(MainActivity.this, LoginValidation, Toast.LENGTH_SHORT).show();
+                UserModel u = new UserModel();
+                u.setUid(id_s);
+                Intent intent = new Intent(MainActivity.this, UserMainActivity.class);
+                intent.putExtra("Map", u);
+                startActivity(intent);
+            } else
+                Toast.makeText(MainActivity.this, "You are not registered", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e)
         {
-            Toast.makeText(MainActivity.this, LoginValidation, Toast.LENGTH_SHORT).show();
-            UserModel u = new UserModel();
-            u.setUid(id_s);
-            Intent intent = new Intent(MainActivity.this,UserActivity.class);
-            intent.putExtra("Map", u);
-            startActivity(intent);
+            Toast.makeText(MainActivity.this, "You are not registered", Toast.LENGTH_SHORT).show();
+        }
         }
         else
         if(LoginValidation.equals("Hospital"))
@@ -62,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
             sqLiteHelper = new SQLiteHelper(MainActivity.this);
             try
             {
-               // boolean z = sqLiteHelper.passcheckStudent(id_s,pass_s);
-                //if(z)
-                //{
+                boolean z = sqLiteHelper.passcheckHospital(id_s,pass_s);
+                if(z)
+                {
                     Toast.makeText(MainActivity.this,"Hospital", Toast.LENGTH_SHORT).show();
                     /*StudentModel s = new StudentModel();
                     s.setsID(id_s);*/
@@ -73,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this,HospitalActivity.class);
                     intent.putExtra("Map", h);
                     startActivity(intent);
-               // }
-               // else
-                  //  Toast.makeText(MainActivity.this,"You are not registered", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(MainActivity.this,"You are not registered", Toast.LENGTH_SHORT).show();
             }
             catch (Exception e)
             {

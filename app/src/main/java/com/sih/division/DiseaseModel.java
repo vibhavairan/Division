@@ -3,7 +3,11 @@ package com.sih.division;
 import java.io.Serializable;
 
 public class DiseaseModel implements Serializable {
-    private String did, hid, dname, patcount, date;
+    private String did;
+    private String hid;
+    private String dname;
+    private String patcount;
+    private String date;
 
     public String getDid() {
         return did;

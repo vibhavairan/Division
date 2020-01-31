@@ -73,6 +73,8 @@
             <Button
                 android:id="@+id/hospital_signup"
                 android:layout_width="350dp"
+                android:background="@drawable/button_bg_rounded_corners"
+                android:textColor="@color/colorBackgroundLight"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"

@@ -59,6 +59,7 @@ public class DiseaseCustomAdapter extends BaseAdapter {
                 final TextView tt1;
                 tt1 = (TextView) v.findViewById(R.id.disease_name);
                 but = v.findViewById(R.id.elegant);
+                but.setNumber(p.getPatcount());
                 if (tt1 != null) {
                     tt1.setText(p.getDname());
                 }

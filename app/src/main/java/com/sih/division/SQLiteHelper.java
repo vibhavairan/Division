@@ -46,13 +46,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DISEASE_NAME = "NAME";
     public static final String COLUMN_PATIENTS = "PAT_COUNT";
     public static final String COLUMN_DATE = "DATE";
+    public static final String COLUMN_LONGTUDE = "LONGTUDE";
+    public static final String COLUMN_LATITUDE = "LATITUDE";
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + HOSPITAL_TABLE_NAME + " ( " + COLUMN_HID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_HOSPITAL_NAME + " VARCHAR(30), " + COLUMN_HOSPITAL_PASS + " VARCHAR(30), " + COLUMN_DISTRICT_NAME + " VARCHAR(30), " + COLUMN_VACANCIES + " INTEGER, " + COLUMN_HOSPITAL_PHOTO + " BLOB, " + COLUMN_HOSPITAL_NUMBER + " INTEGER, " + COLUMN_HOSPITAL_ADDRESS + " VARCHAR(100));");
+        db.execSQL("create table " + HOSPITAL_TABLE_NAME + " ( " + COLUMN_HID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_HOSPITAL_NAME + " VARCHAR(30), " + COLUMN_HOSPITAL_PASS + " VARCHAR(30), " + COLUMN_DISTRICT_NAME + " VARCHAR(30), " + COLUMN_VACANCIES + " INTEGER, " + COLUMN_HOSPITAL_PHOTO + " BLOB, " + COLUMN_HOSPITAL_NUMBER + " INTEGER, " + COLUMN_HOSPITAL_ADDRESS + " VARCHAR(100), " + COLUMN_LATITUDE + " VARCHAR(20), " + COLUMN_LONGTUDE + " VARCHAR(20));");
         db.execSQL("create table " + BLOG_TABLE_NAME + " ( " + COLUMN_BID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ COLUMN_TITLE + " VARCHAR(50),"+ COLUMN_ABSTRACT + " VARCHAR(100)," + COLUMN_BLOG_CONTENT + " VARCHAR(30), " + COLUMN_UID + " INTEGER," + COLUMN_B_DISTRICT + " VARCHAR(10));");
         db.execSQL("create table " + USER_TABLE_NAME + " ( " + COLUMN_UID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+ COLUMN_UPASS + " VARCHAR(30), "+ COLUMN_USER_NAME + " VARCHAR(50)," + COLUMN_CONTACT_NUMBER + " INTEGER, " + COLUMN_USER_EMAIL + " VARCHAR(50), "+ COLUMN_DOB + " DATE, " + COLUMN_GENDER + " VARCHAR(100)," + COLUMN_PERMANENTADD + " VARCHAR(100), " + COLUMN_USER_DISTRICT_NAME + " VARCHAR(10), " + COLUMN_PHOTO + " BLOB) ;");
         db.execSQL("create table " + DISEASE_TABLE_NAME + " ( " + COLUMN_DISEASE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ COLUMN_HID + " INTEGER,"+ COLUMN_DISEASE_NAME + " VARCHAR(50)," + COLUMN_PATIENTS + " INTEGER, " + COLUMN_DATE + " DATE);");
@@ -77,6 +79,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_VACANCIES, newHospital.getVaccount());
         cv.put(COLUMN_HOSPITAL_PHOTO, newHospital.getPhoto());
         cv.put(COLUMN_HOSPITAL_NUMBER, newHospital.getNumber());
+        cv.put(COLUMN_LATITUDE, newHospital.getLatitude());
+        cv.put(COLUMN_LONGTUDE, newHospital.getLongitude());
        database.insert(HOSPITAL_TABLE_NAME, null, cv);
         database.close();
 
@@ -93,6 +97,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         dataToInsert.put(COLUMN_VACANCIES, newHospital.getVaccount());
         dataToInsert.put(COLUMN_HOSPITAL_PHOTO, newHospital.getPhoto());
         dataToInsert.put(COLUMN_HOSPITAL_NUMBER, newHospital.getNumber());
+        dataToInsert.put(COLUMN_LATITUDE, newHospital.getLatitude());
+        dataToInsert.put(COLUMN_LONGTUDE, newHospital.getLongitude());
         String where = COLUMN_HID + "=" + newHospital.getHid();
         try{
             database.update(HOSPITAL_TABLE_NAME, dataToInsert, where, null);
@@ -296,5 +302,29 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         c.close();
         database.close();
         return temp;
+    }
+    public boolean passcheckUser(String tid,String pass)
+    {   boolean z = false;
+        database = this.getReadableDatabase();
+        Cursor c = database.rawQuery("SELECT "+ COLUMN_UPASS + " FROM "+ USER_TABLE_NAME +" WHERE "+ COLUMN_UID +" = "+ tid,null);
+        c.moveToNext();
+        String s = c.getString(0);
+        if(s.equals(pass))
+            z = true;
+        c.close();
+        database.close();
+        return (z);
+    }
+    public boolean passcheckHospital(String tid,String pass)
+    {   boolean z = false;
+        database = this.getReadableDatabase();
+        Cursor c = database.rawQuery("SELECT "+ COLUMN_HOSPITAL_PASS + " FROM "+ HOSPITAL_TABLE_NAME +" WHERE "+ COLUMN_HID +" = "+ tid,null);
+        c.moveToNext();
+        String s = c.getString(0);
+        if(s.equals(pass))
+            z = true;
+        c.close();
+        database.close();
+        return (z);
     }
 }

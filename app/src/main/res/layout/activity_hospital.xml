@@ -26,6 +26,8 @@
         android:id="@+id/button_add"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:textColor="@color/colorBackgroundLight"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
         android:onClick="add_disease"

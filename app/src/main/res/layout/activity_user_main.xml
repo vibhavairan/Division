@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserMainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/but_blog"
+        android:layout_width="match_parent"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:textColor="@color/colorBackgroundLight"
+        android:layout_height="wrap_content"
+        android:onClick="blog"
+        android:text="Blogs" />
+
+    <Button
+        android:id="@+id/but_map"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:textColor="@color/colorBackgroundLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="map"
+        android:text="Maps" />
+
+    <Button
+        android:id="@+id/but_pro"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:textColor="@color/colorBackgroundLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="profile"
+        android:text="Profile" />
+
+    <Button
+        android:id="@+id/but_contact"
+        android:layout_width="match_parent"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:textColor="@color/colorBackgroundLight"
+        android:layout_height="wrap_content"
+        android:onClick="contactUs"
+        android:text="Contact us" />
+</LinearLayout>
