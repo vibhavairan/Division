@@ -3,7 +3,22 @@ package com.sih.division;
 import java.io.Serializable;
 
 public class HospitalModel implements Serializable {
-    private String hid, hname, hpass, dist, vaccount, number;
+    private String hid;
+    private String hname;
+    private String hpass;
+    private String dist;
+    private String vaccount;
+    private String number;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    private String address;
     private byte[] photo;
 
     public String getHid() {
