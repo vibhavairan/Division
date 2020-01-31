@@ -7,6 +7,12 @@ public class UserModel implements Serializable {
     private String upass;
     private String uname;
     private String cnumber;
+    private String gender;
+    private String dob;
+    private String permadd;
+    private String dist;
+    private String email;
+    private byte[] photo;
 
     public String getCnumber() {
         return cnumber;
@@ -23,13 +29,6 @@ public class UserModel implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    private String gender;
-    private String dob;
-    private String permadd;
-    private String dist;
-    private String email;
-    private byte[] photo;
 
     public String getUid() {
         return uid;
