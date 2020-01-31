@@ -1,9 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HospitalSignup">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/photo_hospital"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/noimg" />
+
+            <EditText
+                android:id="@+id/hname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Hospital Name"
+                android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/hpass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Password"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/vac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter No. of Vacancies"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/hcity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter City"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/hno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Number"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+            <EditText
+                android:id="@+id/hadd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Address"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName" />
+            <Button
+                android:id="@+id/hospital_signup"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:onClick="h_button"
+                android:text="Sign up" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

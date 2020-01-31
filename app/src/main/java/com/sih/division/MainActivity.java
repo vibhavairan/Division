@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     RadioGroup radioLoginGroup;
-    String LoginValidation="Admin";
+    String LoginValidation="User";
     String UserPass = "1234",HospitalPass = "1234",GuestPass = "1234";
     int UserId = 101 ,HospitalId = 102,GuestId = 103;
     EditText pass , id;

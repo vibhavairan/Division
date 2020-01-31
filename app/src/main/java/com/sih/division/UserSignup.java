@@ -148,7 +148,7 @@ public class UserSignup extends AppCompatActivity {
             newUser.setPhoto(image);
            // if(z)
            // {
-                sQLiteHelper.insertRecordUser(newUser);
+               sQLiteHelper.insertRecordUser(newUser);
            //     sQLiteHelper.insertRecordAttendanceLater(newStudent);
           //  }
           //  else

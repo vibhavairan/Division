@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
     private SQLiteDatabase database;
@@ -73,8 +74,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_VACANCIES, newHospital.getVaccount());
         cv.put(COLUMN_HOSPITAL_PHOTO, newHospital.getPhoto());
         cv.put(COLUMN_HOSPITAL_NUMBER, newHospital.getNumber());
-        database.insert( HOSPITAL_TABLE_NAME, null, cv );
+       database.insert(HOSPITAL_TABLE_NAME, null, cv);
         database.close();
+
     }
 
     public void updateRecordHospital(HospitalModel newHospital) {
