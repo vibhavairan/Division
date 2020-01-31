@@ -327,4 +327,24 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.close();
         return (z);
     }
+    public ArrayList<HeatModel> getAllHeatRecordsCorona() {
+        database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery(" SELECT " + COLUMN_HID + ", " + COLUMN_LATITUDE + ", " + COLUMN_LONGTUDE + ", " + COLUMN_PATIENTS + " FROM " + HOSPITAL_TABLE_NAME + " INNER JOIN " + DISEASE_TABLE_NAME + " ON HOSPITAL." + COLUMN_HID + " LIKE 'DISEASE." + COLUMN_HID + "' AND " + COLUMN_DISEASE_NAME + " LIKE 'CORONA'", null);
+        ArrayList<HeatModel> heats = new ArrayList<>();
+        HeatModel tempnew;
+        if (cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                cursor.moveToNext();
+                tempnew = new HeatModel();
+                tempnew.setHid(cursor.getString(0));
+                tempnew.setLat(cursor.getString(1));
+                tempnew.setLng(cursor.getString(2));
+                tempnew.setPat(cursor.getString(3));
+                heats.add(tempnew);
+            }
+        }
+        cursor.close();
+        database.close();
+        return heats;
+    }
 }

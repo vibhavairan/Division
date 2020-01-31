@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 public class UserMainActivity extends AppCompatActivity {
-
     UserModel m;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +19,9 @@ public class UserMainActivity extends AppCompatActivity {
         intent.putExtra("Map", m);
         startActivity(intent);
     }
-    public void map(View V) {}
+    public void map(View V) {
+
+    }
     public void profile(View V) {}
     public void contactUs(View V) {}
 }
