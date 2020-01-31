@@ -3,6 +3,7 @@ package com.sih.division;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,16 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+
 import java.util.List;
 
 public class DiseaseCustomAdapter extends BaseAdapter {
     public Context mContext;
     public List<DiseaseModel> mDiseaseList = null;
     private SQLiteHelper sqLiteHelper;
+    ElegantNumberButton but;
+    int count=0;
 
 
     public DiseaseCustomAdapter(Context mContext, List<DiseaseModel> mList, SQLiteHelper sqLiteHelper) {
@@ -51,52 +56,26 @@ public class DiseaseCustomAdapter extends BaseAdapter {
         }
         final DiseaseModel p = (DiseaseModel) getItem(position);
         if (p != null) {
-                final TextView tt1,tt2;
-                ImageView iv1;
-                String s = "Disease";
-                int counter = 0;
+                final TextView tt1;
                 tt1 = (TextView) v.findViewById(R.id.disease_name);
-                Button incre = v.findViewById(R.id.incre);
-                Button decre = v.findViewById(R.id.decre);
-                tt2 = (TextView) v.findViewById(R.id.count);
+                but = v.findViewById(R.id.elegant);
                 if (tt1 != null) {
                     tt1.setText(p.getDname());
                 }
-                if (tt2 != null) {
-                    String c = counter+"";
-                    tt2.setText(c);
-                }
-               incre.setOnClickListener(new View.OnClickListener() {
+               but.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
                    @Override
-                   public void onClick(View v) {
-                       String c ="1";
-                       try {
-                           tt2.setText(c);
-                       }
-                       catch (NullPointerException e)
-                       {
-                           System.out.println("Exception");
-                       }
+                   public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                       String num = newValue+"";
+                       p.setPatcount(num);
+                       sqLiteHelper.updateVac(p);
                    }
                });
-                decre.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String c ="2";
-                        try {
-                            tt2.setText(c);
-                        }
-                        catch (NullPointerException e)
-                        {
-                            System.out.println("Exception");
-                        }
-                    }
-                });
         }
         return v;
     }
 
    /*public Filter getFilter() {
         return null;
+
     }*/
 }

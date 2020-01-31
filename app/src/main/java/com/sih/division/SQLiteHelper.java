@@ -243,4 +243,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.close();
         return diseases;
     }
+    public String getdiscount(DiseaseModel m)
+    {
+        database = this.getReadableDatabase();
+        Cursor c = database.rawQuery("SELECT "+ COLUMN_PATIENTS + " FROM "+DISEASE_TABLE_NAME+" WHERE "+ COLUMN_HID +" = "+ m.getHid()+ " AND "+ COLUMN_DISEASE_ID +"  = "+ m.getDid(),null);
+        c.moveToNext();
+        String s = c.getString(0);
+        c.close();
+        database.close();
+        return s;
+    }
+    public void updateVac(DiseaseModel t)
+    {
+        database = this.getReadableDatabase();
+        database.execSQL("UPDATE " + DISEASE_TABLE_NAME + " SET "+ COLUMN_PATIENTS + " = " + t.getPatcount() + " WHERE "+ COLUMN_HID + " = "+ t.getHid() + " AND "+ COLUMN_DISEASE_ID + " = " +t.getDid());
+        database.close();
+    }
 }

@@ -16,29 +16,11 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/decre"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/disease_name"
-        android:text="-" />
-
-
-    <TextView
-        android:id="@+id/count"
-        android:layout_width="30dp"
-        android:layout_height="50dp"
-        android:layout_toRightOf="@+id/decre"
-        android:foregroundGravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textAlignment="center" />
-
-    <Button
-        android:id="@+id/incre"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/count"
-        android:text="+" />
+    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+        android:id="@+id/elegant"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        />
 
 </RelativeLayout>
