@@ -125,8 +125,6 @@ public class HospitalSignup extends AppCompatActivity {
             // {
 
             sQLiteHelper.insertRecordHospital(newHospital);
-
-            Toast.makeText(HospitalSignup.this,l+"", Toast.LENGTH_SHORT).show();
             //     sQLiteHelper.insertRecordAttendanceLater(newStudent);
             //  }
             //  else
