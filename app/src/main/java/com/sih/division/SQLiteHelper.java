@@ -347,4 +347,22 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.close();
         return heats;
     }
+    public UserModel userDetails(UserModel u)
+    {
+        database = this.getReadableDatabase();
+        Cursor c = database.rawQuery(" SELECT * FROM "+ USER_TABLE_NAME +" WHERE "+ COLUMN_UID +" = "+ u.getUid(),null);
+        c.moveToNext();
+        u.setUid(c.getString(0));
+        u.setUpass(c.getString(1));
+        u.setUname(c.getString(2));
+        u.setCnumber(c.getString(3));
+        u.setEmail(c.getString(4));
+        u.setDob(c.getString(5));
+        u.setGender(c.getString(6));
+        u.setPermadd(c.getString(7));
+        u.setDist(c.getString(8));
+        u.setPhoto(c.getBlob(9));
+        database.close();
+        return (u);
+    }
 }

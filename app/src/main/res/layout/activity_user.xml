@@ -5,9 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     tools:context=".UserActivity">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="@color/colorDark"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/bold"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:text="Blogs"
+        android:textSize="26sp"></TextView>
+
     <EditText
         android:id="@+id/inputSearchBlog"
         android:layout_width="fill_parent"
+        android:layout_below="@+id/title"
         android:layout_height="wrap_content"
         android:hint="Search"
         android:inputType="textVisiblePassword" />

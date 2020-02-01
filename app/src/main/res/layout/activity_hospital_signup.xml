@@ -14,7 +14,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
+            <TextView
+                android:id="@+id/title"
+                android:fontFamily="@font/bold"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/colorDark"
+                android:background="@color/colorAccent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:text="Hospital Sign up"
+                android:textSize="26sp"></TextView>
             <ImageView
                 android:id="@+id/photo_hospital"
                 android:layout_width="100dp"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgUser"
+        android:layout_width="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/noimg" />
+
+    <TextView
+        android:id="@+id/namee"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/numberr"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/emaill"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/genderr"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/dobb"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/addd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/districtt"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="TextView" />
+</LinearLayout>

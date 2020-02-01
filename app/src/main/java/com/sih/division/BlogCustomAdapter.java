@@ -1,6 +1,7 @@
 package com.sih.division;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -8,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 
@@ -76,7 +80,24 @@ public class BlogCustomAdapter extends BaseAdapter {
             but.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    AlertDialog.Builder builder2 = new AlertDialog.Builder(mContext);
+                    builder2.setTitle("Content");
+                    builder2.setCancelable(true);
+                    View viewInflated = LayoutInflater.from(mContext).inflate(R.layout.content,null);
+                    final TextView cont = (TextView) viewInflated.findViewById(R.id.cont);
+                    cont.setText(p.getCont());
+                    builder2.setView(viewInflated);
+                    builder2.setNegativeButton(
+                            "Close",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                  dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = builder2.create();
+                    alertDialog.show();
                 }
             });
         }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/radio_bg"
+    android:background="@drawable/blog"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -21,8 +21,9 @@
             android:id="@+id/nameUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBackgroundLight"
+            android:textColor="@color/colorDark"
             android:layout_toRightOf="@+id/imageUser"
+            android:fontFamily="@font/reg"
             android:layout_marginLeft="15dp"
             android:layout_centerVertical="true"
             android:gravity="start"
@@ -34,6 +35,7 @@
         android:id="@+id/blogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorDark"
         android:gravity="center"
         android:textSize="20dp"
         android:textColor="@color/colorBackgroundLight"
@@ -43,13 +45,17 @@
         android:id="@+id/blog"
         android:layout_width="match_parent"
         android:textColor="@color/colorBackgroundLight"
+        android:background="@color/colorDark"
         android:layout_height="wrap_content"
         android:text="The Roman temple of Bziza is a well-preserved first-century AD Roman temple in the Lebanese town of Bziza. It is dedicated to Azizos, a personification of the morning star in the Canaanite mythology. The temple's name is a corruption of Beth Azizo, meaning the house or temple of Azizos. The building has two doors that connect the portico to a square chamber. To the back of the temple lie the remains of the adyton where images of the deity once stood."
         android:padding="10dp"/>
 
     <Button
         android:id="@+id/readMore"
+        android:fontFamily="@font/reg"
         android:layout_width="wrap_content"
+        android:background="@drawable/button_item"
+        android:textColor="@color/colorBackgroundLight"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:text="Read more" />

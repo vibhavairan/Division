@@ -81,6 +81,7 @@ public class UserActivity extends AppCompatActivity {
                         newBlog.setCont(cont.getText().toString());
                         newBlog.setUid(map.getUid());
                         sQLiteHelper.insertRecordBlog(newBlog);
+                        getAllRecordsAndSetTOAdapter();
                     }
                 });
         AlertDialog alertDialog = builder2.create();

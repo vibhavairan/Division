@@ -4,42 +4,54 @@
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorBackgroundLight"
     android:layout_height="match_parent"
     tools:context=".UserMainActivity">
-
-    <Button
-        android:id="@+id/but_blog"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:background="@drawable/button_bg_rounded_corners"
-        android:textColor="@color/colorBackgroundLight"
-        android:layout_height="wrap_content"
-        android:onClick="blog"
-        android:text="Blogs" />
+        android:layout_height="50dp"
+        android:textColor="@color/colorDark"
+        android:background="@color/colorAccent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:fontFamily="@font/bold"
+        android:text="User Mode"
+        android:textSize="26sp"></TextView>
+<LinearLayout
+    android:layout_marginTop="100dp"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/but_map"
-        android:background="@drawable/button_bg_rounded_corners"
-        android:textColor="@color/colorBackgroundLight"
+    <ImageView
+        android:id="@+id/blogbut"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/blogs" />
+    <ImageView
+        android:id="@+id/mapbut"
+        android:layout_width="120dp"
+        android:layout_marginLeft="30dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/maps" />
+</LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="map"
-        android:text="Maps" />
-
-    <Button
-        android:id="@+id/but_pro"
-        android:background="@drawable/button_bg_rounded_corners"
-        android:textColor="@color/colorBackgroundLight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="profile"
-        android:text="Profile" />
-
-    <Button
-        android:id="@+id/but_contact"
-        android:layout_width="match_parent"
-        android:background="@drawable/button_bg_rounded_corners"
-        android:textColor="@color/colorBackgroundLight"
-        android:layout_height="wrap_content"
-        android:onClick="contactUs"
-        android:text="Contact us" />
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/profbut"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/profile" />
+    <ImageView
+        android:id="@+id/conbut"
+        android:layout_marginLeft="30dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/contactus" />
+    </LinearLayout>
 </LinearLayout>

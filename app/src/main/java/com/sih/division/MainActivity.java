@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         radioLoginGroup = (RadioGroup) findViewById(R.id.radio);
         id = (EditText) findViewById(R.id.id);
         pass = (EditText) findViewById(R.id.pass);
+        sqLiteHelper = new SQLiteHelper(MainActivity.this);
         radioLoginGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     {
         id_s = id.getText().toString();
         pass_s = pass.getText().toString();
+        Toast.makeText(MainActivity.this, id_s, Toast.LENGTH_SHORT).show();
         if(LoginValidation.equals("User"))
         { try {
             boolean z = sqLiteHelper.passcheckUser(id_s, pass_s);
@@ -68,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         else
         if(LoginValidation.equals("Hospital"))
         {
-            sqLiteHelper = new SQLiteHelper(MainActivity.this);
             try
             {
                 boolean z = sqLiteHelper.passcheckHospital(id_s,pass_s);

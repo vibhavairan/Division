@@ -82,6 +82,7 @@ public class HospitalActivity extends AppCompatActivity {
                         newDisease.setDname(text);
                         newDisease.setPatcount("0");
                         sQLiteHelper.insertRecordDisease(newDisease);
+                        getAllRecordsAndSetTOAdapter();
                     }
                 });
         AlertDialog alertDialog = builder2.create();
